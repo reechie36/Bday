@@ -1,44 +1,36 @@
 let jumpCount = 0;
-const maxJumps = 4; // Set your desired maximum number of jumps
-const messages = ["Again!", "AGAIN!", "MOREE!", "Getting tired?"]; // Messages to display
+const maxJumps = 5; // number of jumps before final redirect
+const messages = ["Again!", "AGAIN!", "MOREE!", "Getting tired?", "Just one more..."];
 const finalMessage = "Just one more...";
+
+const jumpButtonElement = document.getElementById('jumpButton');
+jumpButtonElement.addEventListener('click', function () {
+    jump('jumpButton');
+});
 
 function jump(elementId) {
   const jumpButton = document.getElementById(elementId);
 
   if (jumpCount < maxJumps) {
-    const x = Math.round(Math.random() * 90) + '%'; // Keep within bounds
-    const y = Math.round(Math.random() * 90) + '%'; // Keep within bounds
+
+    const x = Math.round(Math.random() * 85) + '%';
+    const y = Math.round(Math.random() * 85) + '%';
 
     jumpButton.style.left = x;
     jumpButton.style.top = y;
 
-    // Update the button text
     jumpButton.textContent = messages[jumpCount];
-
     jumpCount++;
-    return true; // Jump happened
-  } else {
-      // This is the "Just one more..." stage
-    jumpButton.textContent = finalMessage;
-    jumpButton.style.cursor = "pointer"; // Keep it clickable if you want to redirect
+        
+    } else {
 
-        // IMPORTANT: Change the button's behavior to redirect on next click
-        // Remove the existing jumpHandler and add a new one for redirection
-    jumpButton.removeEventListener('click', jumpHandler); // Remove the random jump handler
-
-        // Add a new event listener that redirects to bday.html
-    jumpButton.addEventListener('click', function redirectToBday() {
+      jumpButton.textContent = finalMessage;
+      jumpButton.style.cursor = "pointer";
+        
+      setTimeout(() => {
         window.location.href = "bday.html";
-    }, { once: true }); // Use { once: true } to make sure it only triggers once
-
-    return false; // Jump limit reached (no more random jumps)
+      }, 300);
   }
 }
-// Attach the event listener
-        const jumpButtonElement = jumpButton;
-        // We'll create a named function for the handler so we can remove it later
-        function jumpHandler() {
-            jump('jumpButton');
-        }
-        jumpButtonElement.addEventListener('click', jumpHandler);
+
+
