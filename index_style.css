@@ -1,20 +1,26 @@
  body {
   height: 100vh;
-  margin: 0;
+  margin: 1;
   overflow: hidden; /* Prevent scrollbars if button goes off screen briefly */
   position: relative;
-  background-color: #f0f0f0;
+  background-color: #5b91ba;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
 
 }
 #jumpButton {
   position: absolute;
-  padding: 15px 30px;
+  padding: .8em 2.5em;
   font-size: 20px;
+  font-weight: 500;
   cursor: pointer;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 100px;
   transition: left 0.3s ease-out, top 0.3s ease-out; /* Smooth transition */
-
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
